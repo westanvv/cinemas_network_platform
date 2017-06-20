@@ -1,8 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Router, Route, useRouterHistory } from 'react-router'
+import { Provider } from 'react-redux'
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import * as configureStore from './store'
+
+import MainLayout from './containers/Main'
+
+import './styles/style.css'
+
+const store = configureStore.STORE;
+
+window.onload = function() {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router>
+        <Route name='MainLayout' component={MainLayout}>
+        </Route>
+      </Router>
+    </Provider>,
+
+    document.getElementById('root'))
+};
